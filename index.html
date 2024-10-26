@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Cards</title>
+    <style>
+        .container{
+            width: 80%;
+            display: flex;
+            margin: auto;
+            border: 1px solid;
+            text-align: center;
+            align-content: center;
+            background-color: rgb(186, 254, 231);
+            color: rgb(13, 161, 164);
+            border-radius: 10px;
+            padding: 20px;
+            justify-content: space-around;
+            margin-top: 5%;
+        }
+
+        .containt{
+            width: 300px;
+            border: 1px solid;
+            background-color: antiquewhite;
+            padding: 30px;
+            font-size: larger;
+            border-radius: 10px;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+
+    //cards function to mount data to ReactDOM.
+    function GreetingCards({cards}){
+
+        //retur the data.
+        return(
+
+            // main div to mount all items at once to DOM
+            <main className="container">
+
+                {/*{iterate array using map method}*/}
+                {array.map((card, index)=>(
+
+                    //div tag to seprate each greeting card and add a class.
+                    <div key={index} className="containt">
+
+                        {/*greeting title*/}
+                        <h1>Greetings!!</h1>
+                        {/*greeting message*/}
+                        <h2>{card.greeting}</h2>
+                        {/*name of the user*/}
+                        <h2>{card.name}</h2>
+                    </div>
+                ))}
+            </main>
+        );
+    }
+    
+    //aaray of objects for card props.
+    const array= [
+        {greeting: "Happy Birthday!", name: "Awadhesh Kumar"},
+        {greeting: "Happy Holiday!", name: "Abhay Kumar"},
+        {greeting: "Happy Christmas!", name: "Leon Kennedy"}
+    ];
+
+    //instance variable of data mounting in ReactDOM.
+    let result = ReactDOM.createRoot(document.getElementById("root"));
+
+    //render the Cards function and pass array to cards props.
+    result.render(<GreetingCards cards={array}/>);
+
+  </script>
